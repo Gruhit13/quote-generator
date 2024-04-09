@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-request_url = 'http://localhost:8000'
+request_url = 'https://gruhit13-quote-generator-backend.hf.space'
 
 # Main title of the page
 st.title('Quote Generator 🤖')
@@ -25,7 +25,7 @@ def get_quote():
     global request_url
     with st.spinner("🤖 is generating quote for you..."):
         response = requests.post(
-            request_url+f'/generate_quote',
+            request_url+'/generate_quote',
             json = {'tags': tags},
             headers={'Content-type': 'application/json'}
         ).json()
