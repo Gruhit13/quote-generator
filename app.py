@@ -30,7 +30,6 @@ def get_quote():
             headers={'Content-type': 'application/json'}
         ).json()
         
-        st.write(response)
         # The response would be <startoftext>tags<bot>:AI response
         # so we just need to take the AI respones
         st.session_state['quote'] = response['quote'].split('<bot>:')[-1]
