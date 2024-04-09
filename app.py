@@ -25,11 +25,12 @@ def get_quote():
     global request_url
     with st.spinner("🤖 is generating quote for you..."):
         response = requests.post(
-            request_url+'/generate_quote',
-            data = {'tags': tags},
+            request_url+f'/generate_quote',
+            json = {'tags': tags},
             headers={'Content-type': 'application/json'}
         ).json()
         
+        st.write(response)
         # The response would be <startoftext>tags<bot>:AI response
         # so we just need to take the AI respones
         st.session_state['quote'] = response['quote'].split('<bot>:')[-1]
