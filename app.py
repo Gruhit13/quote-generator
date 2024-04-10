@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 
-# request_url = 'http://127.0.0.1:8000'
-request_url = 'https://gruhit13-quote-generator-backend.hf.space'
+request_url = 'http://127.0.0.1:8000'
+# request_url = 'https://gruhit13-quote-generator-backend.hf.space'
 
 # Main title of the page
 st.title('Quote Generator 🤖')
@@ -30,9 +30,14 @@ def get_quote():
             request_url+'/',
             json = {'tags': tags},
             headers={'Content-type': 'application/json'}
-        ).json()
+        )
+        
+        if response.status_code == 400:
+            st.write('There is an error')
+            return
         
         st.write(response)
+        st.write(response.__dict__)
         # The response would be <startoftext>tags<bot>:AI response
         # so we just need to take the AI respones
         st.session_state['quote'] = response['quote'].split('<bot>:')[-1]
