@@ -1,4 +1,5 @@
 import streamlit as st
+import json
 import requests
 
 request_url = 'http://127.0.0.1:8000'
@@ -24,23 +25,21 @@ input_container[0].text_input(
 def get_quote():
     tags = st.session_state['tags_input']
     global request_url
-    st.write("Using URL: ", request_url)
     with st.spinner("🤖 is generating quote for you..."):
-        response = requests.get(
-            request_url+'/',
+        response = requests.post(
+            request_url+'/generate_quote',
             json = {'tags': tags},
             headers={'Content-type': 'application/json'}
         )
         
         if response.status_code == 400:
-            st.write('There is an error')
+            st.write(f':red[Error Encounted: {response.reason}]')
             return
-        
-        st.write(response)
-        st.write(response.__dict__)
+
+        response_data = json.loads(response._content.decode('UTF-8'))
         # The response would be <startoftext>tags<bot>:AI response
         # so we just need to take the AI respones
-        st.session_state['quote'] = response['quote'].split('<bot>:')[-1]
+        st.session_state['quote'] = response_data['quote'].split('<bot>:')[-1]
 
 
 input_container[1].button(
