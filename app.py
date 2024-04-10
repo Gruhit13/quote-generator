@@ -46,7 +46,6 @@ def get_quote():
 
         # The response would be <startoftext>tags<bot>:AI response
         # so we just need to take the AI respones
-        st.write(response_data)
         st.session_state['quote'] = response_data['quote'].split('<bot>:')[-1]
 
 
