@@ -2,8 +2,8 @@ import streamlit as st
 import json
 import requests
 
-# request_url = 'https://gruhit13-quote-generator-backend.hf.space'
-request_url = 'http://127.0.0.1:8000'
+request_url = 'https://gruhit13-quote-generator-backend.hf.space'
+# request_url = 'http://127.0.0.1:8000'
 
 # Main title of the page
 st.title('Quote Generator 🤖')
