@@ -4,7 +4,7 @@ import requests
 from typing import List
 from help_dict import helper
 
-request_url = 'https://gruhit13-quote-generator-backend.hf.space'
+request_url = 'https://gruhit-patel-quote-generator-backend.hf.space'
 # request_url = 'http://127.0.0.1:8000'
 tags_file = 'https://huggingface.co/gruhit13/quote-generator-v2/raw/main/tags.txt'
 
